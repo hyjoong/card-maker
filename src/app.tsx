@@ -3,11 +3,22 @@ import Footer from "./components/footer/footer";
 import Login from "./components/login/login";
 import { AuthProps } from "./MainInterface";
 import styled from "styled-components";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Maker from "./components/maker/maker";
 
 function App({ authService }: AuthProps) {
   return (
     <LoginWrapper>
-      <Login authService={authService} />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Login authService={authService} />
+          </Route>
+          <Route path="/maker">
+            <Maker authService={authService} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </LoginWrapper>
   );
 }

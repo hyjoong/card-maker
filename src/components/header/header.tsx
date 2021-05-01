@@ -21,8 +21,8 @@ const HeaderContainer = styled.header`
 const LogoutBtn = styled.button`
   position: absolute;
   right: 3em;
-  top: 1em;
-  padding: 0.4em;
+  top: 0.3em;
+  padding: 0.2em;
   border-radius: 10%;
   background-color: #314955;
   color: white;
