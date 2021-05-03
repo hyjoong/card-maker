@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { AuthProps } from "../../MainInterface";
-import Footer from "../footer/footer";
-import Header from "../header/header";
+import Footer from "./footer";
+import Header from "./header";
 
 function Login({ authService }: AuthProps) {
   const history = useHistory();

@@ -1,17 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { AuthProps } from "../../MainInterface";
-import Editor from "../editor/editor";
-import Footer from "../footer/footer";
-import Header from "../header/header";
-import Preview from "../preview/preview";
+import Footer from "./footer";
+import Header from "./header";
+import Editor from "./editor";
+import Preview from "./preview";
 
 function Maker({ authService }: AuthProps) {
+  const [cards, setCards] = useState([]);
   const history = useHistory();
   const onLogout = () => {
     authService.logout();
   };
+
+  useEffect(() => {
+    fetch("data/data.json")
+      .then((res) => res.json())
+      .then((res) => setCards(res))
+      .then((res) => console.log(res));
+  }, []);
 
   useEffect(() => {
     authService.onAuthChange((user: any) => {
@@ -25,8 +33,8 @@ function Maker({ authService }: AuthProps) {
     <MakerContainer>
       <Header onLogout={onLogout} />
       <Container>
-        <Editor />
-        <Preview />
+        <Editor cards={cards}>Card Maker</Editor>
+        <Preview cards={cards}>Card Preview</Preview>
       </Container>
       <Footer />
     </MakerContainer>

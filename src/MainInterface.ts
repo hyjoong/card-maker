@@ -8,3 +8,7 @@ export interface AuthProps {
 export interface HeaderProps {
   onLogout?: () => void;
 }
+
+export interface CardProps {
+  cards: any;
+}

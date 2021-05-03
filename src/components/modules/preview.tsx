@@ -1,13 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import Card from "./card";
+import { CardProps } from "../../MainInterface";
 
-function Preview() {
+const Preview: React.FC<CardProps> = ({ cards, children }) => {
   return (
     <PreviewContainer>
-      <PreviewTitle>Preview</PreviewTitle>
+      <PreviewTitle>{children}</PreviewTitle>
+      {cards?.map((card: any) => (
+        <Card card={card} />
+      ))}
     </PreviewContainer>
   );
-}
+};
 
 const PreviewContainer = styled.section`
   flex-basis: 50%;

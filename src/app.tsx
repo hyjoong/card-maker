@@ -1,10 +1,10 @@
 import React from "react";
-import Footer from "./components/footer/footer";
-import Login from "./components/login/login";
+import Footer from "./components/modules/footer";
+import Login from "./components/modules/login";
 import { AuthProps } from "./MainInterface";
 import styled from "styled-components";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Maker from "./components/maker/maker";
+import { BrowserRouter, Route, Switch } from "react-router-dom"; 
+import Maker from "./components/modules/maker";
 
 function App({ authService }: AuthProps) {
   return (
