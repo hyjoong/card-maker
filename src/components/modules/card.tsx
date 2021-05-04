@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Card: React.FC<{ card: any }> = ({ card }) => {
-  return <CardTitle>{card.id}</CardTitle>;
+  //  const { name, company, title, email, message, theme, fileName, fileURL };
+  return (
+    <>
+      <CardTitle>{card.id}</CardTitle>
+    </>
+  );
 };
 
 const CardTitle = styled.h1`

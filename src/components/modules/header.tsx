@@ -1,35 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import { HeaderProps } from "../../MainInterface";
+import LoginButton from "../atoms/loginButton";
+import { useHistory } from "react-router";
+import HeaderTItle from "../atoms/tItleBox";
 
-function Header({ onLogout }: HeaderProps) {
-  return (
-    <HeaderContainer>
-      {true && <LogoutBtn onClick={onLogout}>Logout</LogoutBtn>}
-      <HeaderTitle>Business Card Maker</HeaderTitle>
-    </HeaderContainer>
-  );
+export interface IHeader {
+  authService?: any;
+  onLogout?: () => void;
+  user: any;
 }
 
+const Header: React.FC<IHeader> = ({ authService, user }) => {
+  const history = useHistory();
+  const handleLogin = () => {
+    history.push("/login");
+  };
+
+  return (
+    <HeaderContainer>
+      <HeaderTItle>Friends Store</HeaderTItle>
+      <LoginButton handleLogin={handleLogin} user={user} />
+    </HeaderContainer>
+  );
+};
+
 const HeaderContainer = styled.header`
+  z-index: 10;
   width: 100%;
   text-align: center;
-  padding: 0.5em;
+  height: 80px;
+  padding: 0 100px;
   background-color: purple;
-  position: relative;
+  align-items: center;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
 `;
-const LogoutBtn = styled.button`
-  position: absolute;
-  right: 3em;
-  top: 0.3em;
-  padding: 0.2em;
-  border-radius: 10%;
-  background-color: #314955;
-  color: white;
-  outline: 0;
-  border: 0;
-  cursor: pointer;
-`;
-const HeaderTitle = styled.h1``;
 
 export default Header;

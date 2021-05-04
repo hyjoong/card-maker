@@ -16,6 +16,9 @@ class AuthService {
       onUserChanged(user);
     });
   }
+  checkLogin(callback) {
+    firebase.auth().onAuthStateChanged(callback);
+  }
 }
 
 export default AuthService;

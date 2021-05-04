@@ -3,13 +3,13 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { AuthProps } from "../../MainInterface";
 import Footer from "./footer";
-import Header from "./header";
 
-function Login({ authService }: AuthProps) {
+const Login: React.FC<AuthProps> = ({ authService }) => {
   const history = useHistory();
+
   const goToMaker = (userId: any) => {
     history.push({
-      pathname: "/maker",
+      pathname: "/",
       state: { id: userId },
     });
   };
@@ -28,7 +28,6 @@ function Login({ authService }: AuthProps) {
 
   return (
     <LoginContainer>
-      <Header />
       <LoginBox>
         <LoginTitle>Login</LoginTitle>
         <LoginList>
@@ -39,7 +38,7 @@ function Login({ authService }: AuthProps) {
           </LoginItem>
           <LoginItem>
             <Button name="github" onClick={onLogin}>
-              GitHub
+              Github
             </Button>
           </LoginItem>
         </LoginList>
@@ -47,7 +46,7 @@ function Login({ authService }: AuthProps) {
       <Footer />
     </LoginContainer>
   );
-}
+};
 
 const LoginContainer = styled.section`
   width: 30em;

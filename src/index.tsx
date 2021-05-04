@@ -6,12 +6,11 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 
-const authService = new AuthService();
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <App authService={authService} />
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
