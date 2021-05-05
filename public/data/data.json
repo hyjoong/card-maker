@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Hyeonjoong",
-    "company": "wecode",
+    "company": "디뉴로",
     "theme": "light",
     "title": "FE",
     "email": "shape12@gmail.com",
@@ -13,22 +13,22 @@
   {
     "id": "2",
     "name": "Hyeonjoong2",
-    "company": "wecode",
+    "company": "위티",
     "theme": "light",
     "title": "FE",
     "email": "shape12@gmail.com",
-    "message": "oh my god",
+    "message": "Hi ~~~",
     "fileName": "hjoong",
     "fileURL": null
   },
   {
     "id": "3",
     "name": "Hyeonjoong3",
-    "company": "wecode",
+    "company": "인썸니아",
     "theme": "light",
     "title": "FE",
     "email": "shape12@gmail.com",
-    "message": "oh my god",
+    "message": "Good",
     "fileName": "hjoong",
     "fileURL": null
   }

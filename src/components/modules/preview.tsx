@@ -7,16 +7,17 @@ const Preview: React.FC<CardProps> = ({ cards, children }) => {
   return (
     <PreviewContainer>
       <PreviewTitle>{children}</PreviewTitle>
-      {cards?.map((card: any) => (
-        <Card card={card} />
-      ))}
+      <PreviewCards>
+        {cards?.map((card: any) => (
+          <Card card={card} />
+        ))}
+      </PreviewCards>
     </PreviewContainer>
   );
 };
 
 const PreviewContainer = styled.section`
   flex-basis: 50%;
-  background-color: pink;
 `;
 
 const PreviewTitle = styled.h1`
@@ -25,6 +26,15 @@ const PreviewTitle = styled.h1`
   margin-bottom: 1em;
   color: ${(props) => props.theme.makerGreen};
   font-weight: 600;
+`;
+
+const PreviewCards = styled.ul`
+  width: 100%;
+  height: 100%;
+  padding: 0.5em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default Preview;

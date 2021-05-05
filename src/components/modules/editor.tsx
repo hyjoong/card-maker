@@ -15,14 +15,15 @@ const Editor: React.FC<CardProps> = ({ cards, children }) => {
 
 const EditorContainer = styled.section`
   flex-basis: 50%;
-  background-color: wheat;
+  padding: 0.5em 2em;
+  border-right: ${({ theme }) => theme.makerLightGrey};
 `;
 
 const EditorTitle = styled.h1`
   width: 100%;
   text-align: center;
   margin-bottom: 1em;
-  color: ${(props) => props.theme.makerGreen};
+  color: ${({ theme }) => theme.makerGreen};
   font-weight: 600;
 `;
 

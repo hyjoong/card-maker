@@ -43,9 +43,10 @@ function Maker({ authService, user }: AuthProps) {
 
 const MakerContainer = styled.section`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: ${(props) => props.theme.makerWhite};
 `;
 
 const Container = styled.div`
