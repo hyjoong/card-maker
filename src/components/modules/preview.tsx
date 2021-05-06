@@ -3,13 +3,13 @@ import styled from "styled-components";
 import Card from "./card";
 import { CardProps } from "../../MainInterface";
 
-const Preview: React.FC<CardProps> = ({ cards, children }) => {
+const Preview: React.FC<{ cards: any }> = ({ cards, children }) => {
   return (
     <PreviewContainer>
       <PreviewTitle>{children}</PreviewTitle>
       <PreviewCards>
-        {cards?.map((card: any) => (
-          <Card card={card} />
+        {cards?.map((card: any, index: number) => (
+          <Card card={card} key={index} />
         ))}
       </PreviewCards>
     </PreviewContainer>

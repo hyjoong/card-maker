@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 interface ButtonP {
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
 
 const ButtonElement: React.FC<ButtonP> = ({ children, onSubmit }) => {
-  return <DefaultButton>{children}</DefaultButton>;
+  return <DefaultButton onClick={onSubmit}>{children}</DefaultButton>;
 };
 
 const DefaultButton = styled.button`

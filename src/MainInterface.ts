@@ -7,5 +7,6 @@ export interface AuthProps {
 }
 
 export interface CardProps {
-  cards: any;
+  cards?: any;
+  addCard: (card: any) => void;
 }

@@ -20,7 +20,6 @@ function Maker({ authService, user }: AuthProps) {
       .then((res) => res.json())
       .then((res) => setCards(res));
   }, []);
-  console.log(user);
   useEffect(() => {
     authService.onAuthChange((user: any) => {
       if (!user) {
@@ -29,11 +28,19 @@ function Maker({ authService, user }: AuthProps) {
     });
   });
 
+  const addCard = (card: any) => {
+    console.log("실행");
+    console.log(card);
+    const updated: any = [...cards, card];
+    setCards(updated);
+  };
   return (
     <MakerContainer>
       <Header user={user} />
       <Container>
-        <Editor cards={cards}>Friend Maker</Editor>
+        <Editor cards={cards} addCard={addCard}>
+          Friend Maker
+        </Editor>
         <Preview cards={cards}>Friends List</Preview>
       </Container>
       <Footer />

@@ -2,13 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import CardEditForm from "./cardEditForm";
 import { CardProps } from "../../MainInterface";
-const Editor: React.FC<CardProps> = ({ cards, children }) => {
+import CardAddForm from "./cardAddForm";
+
+const Editor: React.FC<CardProps> = ({ cards, addCard, children }) => {
+  console.log("무야호", addCard);
   return (
     <EditorContainer>
       <EditorTitle>{children}</EditorTitle>
-      {cards?.map((card: any) => (
-        <CardEditForm card={card} />
+      {cards?.map((card: any, index: number) => (
+        <CardEditForm card={card} key={index} />
       ))}
+      <CardAddForm addCard={ addCard} />
     </EditorContainer>
   );
 };

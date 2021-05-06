@@ -21,7 +21,7 @@ const Card: React.FC<{ card: any }> = ({ card }) => {
       <CardContainer>
         <CardName>name : {name}</CardName>
         <CardCompany>company : {company}</CardCompany>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>Poition : {title}</CardTitle>
         <CardEmail>email : {email}</CardEmail>
         <CardMessage>Memo : {message}</CardMessage>
       </CardContainer>
@@ -56,10 +56,10 @@ const CardTitle = styled.h1`
   font-size: 0.8rem;
 `;
 
-const CardName = styled.p`
+const CardName = styled(CardTitle)``;
+const CardCompany = styled.p`
   font-size: 0.8rem;
 `;
-const CardCompany = styled.p``;
 const CardEmail = styled.p`
   margin: 0;
   font-size: 0.8rem;
