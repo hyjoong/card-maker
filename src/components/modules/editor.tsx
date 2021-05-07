@@ -4,15 +4,24 @@ import CardEditForm from "./cardEditForm";
 import { CardProps } from "../../MainInterface";
 import CardAddForm from "./cardAddForm";
 
-const Editor: React.FC<CardProps> = ({ cards, addCard, children }) => {
-  console.log("무야호", addCard);
+const Editor: React.FC<CardProps> = ({
+  cards,
+  children,
+  createOrUpdateCard,
+  deleteCard,
+}) => {
   return (
     <EditorContainer>
       <EditorTitle>{children}</EditorTitle>
-      {cards?.map((card: any, index: number) => (
-        <CardEditForm card={card} key={index} />
+      {Object.keys(cards)?.map((key: any) => (
+        <CardEditForm
+          card={cards[key]}
+          key={key}
+          createOrUpdateCard={createOrUpdateCard}
+          deleteCard={deleteCard}
+        />
       ))}
-      <CardAddForm addCard={ addCard} />
+      <CardAddForm createOrUpdateCard={createOrUpdateCard} />
     </EditorContainer>
   );
 };

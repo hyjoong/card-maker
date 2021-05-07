@@ -4,10 +4,10 @@ import ButtonElement from "../atoms/buttonElement";
 import ImageInput from "../atoms/ImageInput";
 
 interface IAddForm {
-  addCard: (card: any) => void;
+  createOrUpdateCard: (card: any) => void;
 }
 
-const CardAddForm: React.FC<IAddForm> = ({ addCard }) => {
+const CardAddForm: React.FC<IAddForm> = ({ createOrUpdateCard }) => {
   const formRef: any = useRef("");
   const nameRef: any = useRef("");
   const companyRef: any = useRef("");
@@ -27,7 +27,7 @@ const CardAddForm: React.FC<IAddForm> = ({ addCard }) => {
     };
     console.log(card);
     formRef.current.reset();
-    addCard(card);
+    createOrUpdateCard(card);
     console.log("ss");
   };
   return (

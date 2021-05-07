@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface ButtonP {
-  onSubmit?: () => void;
+  onSubmit?: (card: any) => void;
 }
 
 const ButtonElement: React.FC<ButtonP> = ({ children, onSubmit }) => {

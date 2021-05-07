@@ -8,7 +8,41 @@ import Editor from "../../modules/editor";
 import Preview from "../../modules/preview";
 
 function Maker({ authService, user }: AuthProps) {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState({
+    "1": {
+      id: "1",
+      name: "Hyeonjoong",
+      company: "디뉴로",
+      theme: "light",
+      title: "FE",
+      email: "shape12@gmail.com",
+      message: "oh my god",
+      fileName: "hjoong",
+      fileURL: null,
+    },
+    "2": {
+      id: "2",
+      name: "Hyeonjoong2",
+      company: "위티",
+      theme: "light",
+      title: "FE",
+      email: "shape12@gmail.com",
+      message: "Hi ~~~",
+      fileName: "hjoong",
+      fileURL: null,
+    },
+    "3": {
+      id: "3",
+      name: "Hyeonjoong3",
+      company: "인썸니아",
+      theme: "light",
+      title: "FE",
+      email: "shape12@gmail.com",
+      message: "Good",
+      fileName: "hjoong",
+      fileURL: null,
+    },
+  });
   const history = useHistory();
 
   const onLogout = () => {
@@ -18,8 +52,10 @@ function Maker({ authService, user }: AuthProps) {
   useEffect(() => {
     fetch("data/data.json")
       .then((res) => res.json())
-      .then((res) => setCards(res));
+      .then((res) => setCards(res))
+      .then((res) => console.log("z", cards));
   }, []);
+
   useEffect(() => {
     authService.onAuthChange((user: any) => {
       if (!user) {
@@ -28,17 +64,35 @@ function Maker({ authService, user }: AuthProps) {
     });
   });
 
-  const addCard = (card: any) => {
-    console.log("실행");
-    console.log(card);
-    const updated: any = [...cards, card];
-    setCards(updated);
+  const createOrUpdateCard = (card: any) => {
+    setCards((cards) => {
+      const updated: any = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+    // const updated = cards.map((item: any) => {
+    //   if (card.id === item.id) return;
+    //   return item;
+    // });
+    // console.log(card);
+  };
+
+  const deleteCard = (card: any) => {
+    setCards((cards) => {
+      const updated: any = { ...cards };
+      delete updated[card.id];
+      return updated;
+    });
   };
   return (
     <MakerContainer>
       <Header user={user} />
       <Container>
-        <Editor cards={cards} addCard={addCard}>
+        <Editor
+          cards={cards}
+          createOrUpdateCard={createOrUpdateCard}
+          deleteCard={deleteCard}
+        >
           Friend Maker
         </Editor>
         <Preview cards={cards}>Friends List</Preview>

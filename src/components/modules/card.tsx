@@ -14,6 +14,7 @@ const Card: React.FC<{ card: any }> = ({ card }) => {
     fileName,
     fileURL,
   } = card;
+
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <CardWrapper>

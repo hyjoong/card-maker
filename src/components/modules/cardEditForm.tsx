@@ -3,7 +3,17 @@ import styled from "styled-components";
 import ButtonElement from "../atoms/buttonElement";
 import ImageInput from "../atoms/ImageInput";
 
-const CardEditForm: React.FC<{ card: any }> = ({ card }) => {
+interface IEditProps {
+  card: any;
+  createOrUpdateCard: (card: any) => void;
+  deleteCard: (card: any) => void;
+}
+
+const CardEditForm: React.FC<IEditProps> = ({
+  card,
+  createOrUpdateCard,
+  deleteCard,
+}) => {
   const {
     name,
     company,
@@ -14,24 +24,42 @@ const CardEditForm: React.FC<{ card: any }> = ({ card }) => {
     fileName,
     fileURL,
   } = card;
+  const onChange = (e: any) => {
+    if (e.currentTarget == null) return;
+    e.preventDefault();
+    createOrUpdateCard({
+      ...card,
+      //      [e.currentTarget.name]
+    });
+  };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    email.console.log("click");
+    deleteCard(card);
   };
   return (
     <CardForm>
-      <NameInput type="text" name="name" value={name} readOnly />
+      <NameInput type="text" name="name" defaultValue={name} />
       <CompanyInput
         defaultValue={company}
         type="text"
         name="company"
-        readOnly
+        onChange={onChange}
       />
-      <TitleInput type="text" name="title" value={title} readOnly />
-      <EmailInput type="text" name="email" value={email} readOnly />
-      <MemoInput name="message" value={message} readOnly />
+      <TitleInput
+        type="text"
+        name="title"
+        defaultValue={title}
+        onChange={onChange}
+      />
+      <EmailInput
+        type="text"
+        name="email"
+        defaultValue={email}
+        onChange={onChange}
+      />
+      <MemoInput name="message" defaultValue={message} onChange={onChange} />
       <ImageInput>Image</ImageInput>
-      <ButtonElement onSubmit={() => onSubmit}>Delete</ButtonElement>
+      <ButtonElement onSubmit={onSubmit}>Delete</ButtonElement>
     </CardForm>
   );
 };
