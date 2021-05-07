@@ -25,10 +25,8 @@ const CardAddForm: React.FC<IAddForm> = ({ createOrUpdateCard }) => {
       email: emailRef.current.value || "",
       message: messageRef.current.value || "",
     };
-    console.log(card);
     formRef.current.reset();
     createOrUpdateCard(card);
-    console.log("ss");
   };
   return (
     <CardForm ref={formRef} onSubmit={onSubmit}>
@@ -110,7 +108,7 @@ const EmailInput = styled.input`
   background: ${({ theme }) => theme.makerWhite};
 `;
 
-const MemoInput = styled.textarea`
+const MemoInput = styled.input`
   font-size: 0.8rem;
   width: 100%;
   border: 0;

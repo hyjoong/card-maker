@@ -16,6 +16,7 @@ const CardEditForm: React.FC<IEditProps> = ({
 }) => {
   const {
     name,
+    id,
     company,
     title,
     email,
@@ -24,12 +25,12 @@ const CardEditForm: React.FC<IEditProps> = ({
     fileName,
     fileURL,
   } = card;
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget == null) return;
     e.preventDefault();
     createOrUpdateCard({
       ...card,
-      //      [e.currentTarget.name]
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,7 +39,12 @@ const CardEditForm: React.FC<IEditProps> = ({
   };
   return (
     <CardForm>
-      <NameInput type="text" name="name" defaultValue={name} />
+      <NameInput
+        type="text"
+        name="name"
+        defaultValue={name}
+        onChange={onChange}
+      />
       <CompanyInput
         defaultValue={company}
         type="text"
@@ -113,7 +119,7 @@ const EmailInput = styled.input`
   background: ${({ theme }) => theme.makerWhite};
 `;
 
-const MemoInput = styled.textarea`
+const MemoInput = styled.input`
   font-size: 0.8rem;
   width: 100%;
   border: 0;

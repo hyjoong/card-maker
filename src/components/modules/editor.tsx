@@ -13,7 +13,7 @@ const Editor: React.FC<CardProps> = ({
   return (
     <EditorContainer>
       <EditorTitle>{children}</EditorTitle>
-      {Object.keys(cards)?.map((key: any) => (
+      {Object.keys(cards)?.map((key: string) => (
         <CardEditForm
           card={cards[key]}
           key={key}

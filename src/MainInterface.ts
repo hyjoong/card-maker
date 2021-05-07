@@ -8,6 +8,6 @@ export interface AuthProps {
 
 export interface CardProps {
   cards?: any;
-  createOrUpdateCard: (card: any) => void;
-  deleteCard: (card: any) => void;
+  createOrUpdateCard: (card: Object) => void;
+  deleteCard: (card: Object) => void;
 }

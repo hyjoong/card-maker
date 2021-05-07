@@ -9,7 +9,7 @@ import Preview from "../../modules/preview";
 
 function Maker({ authService, user }: AuthProps) {
   const [cards, setCards] = useState({
-    "1": {
+    1: {
       id: "1",
       name: "Hyeonjoong",
       company: "디뉴로",
@@ -17,10 +17,10 @@ function Maker({ authService, user }: AuthProps) {
       title: "FE",
       email: "shape12@gmail.com",
       message: "oh my god",
-      fileName: "hjoong",
+      fileName: "hj1",
       fileURL: null,
     },
-    "2": {
+    2: {
       id: "2",
       name: "Hyeonjoong2",
       company: "위티",
@@ -28,10 +28,10 @@ function Maker({ authService, user }: AuthProps) {
       title: "FE",
       email: "shape12@gmail.com",
       message: "Hi ~~~",
-      fileName: "hjoong",
+      fileName: "hj2",
       fileURL: null,
     },
-    "3": {
+    3: {
       id: "3",
       name: "Hyeonjoong3",
       company: "인썸니아",
@@ -39,7 +39,7 @@ function Maker({ authService, user }: AuthProps) {
       title: "FE",
       email: "shape12@gmail.com",
       message: "Good",
-      fileName: "hjoong",
+      fileName: "hj3",
       fileURL: null,
     },
   });
@@ -49,12 +49,12 @@ function Maker({ authService, user }: AuthProps) {
     authService.logout();
   };
 
-  useEffect(() => {
-    fetch("data/data.json")
-      .then((res) => res.json())
-      .then((res) => setCards(res))
-      .then((res) => console.log("z", cards));
-  }, []);
+  // useEffect(() => {
+  //   fetch("data/data.json")
+  //     .then((res) => res.json())
+  //     .then((res) => setCards(res))
+  //     .then((res) => console.log("z", cards));
+  // }, []);
 
   useEffect(() => {
     authService.onAuthChange((user: any) => {
@@ -70,11 +70,6 @@ function Maker({ authService, user }: AuthProps) {
       updated[card.id] = card;
       return updated;
     });
-    // const updated = cards.map((item: any) => {
-    //   if (card.id === item.id) return;
-    //   return item;
-    // });
-    // console.log(card);
   };
 
   const deleteCard = (card: any) => {
