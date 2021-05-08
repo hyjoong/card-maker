@@ -8,6 +8,7 @@ const Editor: React.FC<CardProps> = ({
   cards,
   children,
   createOrUpdateCard,
+  FileInput,
   deleteCard,
 }) => {
   return (
@@ -17,11 +18,15 @@ const Editor: React.FC<CardProps> = ({
         <CardEditForm
           card={cards[key]}
           key={key}
+          FileInput={FileInput}
           createOrUpdateCard={createOrUpdateCard}
           deleteCard={deleteCard}
         />
       ))}
-      <CardAddForm createOrUpdateCard={createOrUpdateCard} />
+      <CardAddForm
+        createOrUpdateCard={createOrUpdateCard}
+        FileInput={FileInput}
+      />
     </EditorContainer>
   );
 };

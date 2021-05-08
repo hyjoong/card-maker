@@ -5,9 +5,9 @@ import { useHistory } from "react-router";
 import HeaderTItle from "../atoms/tItleBox";
 
 export interface IHeader {
-  authService?: any;
+  authService?: object;
   onLogout?: () => void;
-  user: any;
+  user: object;
 }
 
 const Header: React.FC<IHeader> = ({ authService, user }) => {

@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import ButtonElement from "../atoms/buttonElement";
-import ImageInput from "../atoms/ImageInput";
 
 interface IEditProps {
   card: any;
+  FileInput: (props: any) => any;
   createOrUpdateCard: (card: any) => void;
   deleteCard: (card: any) => void;
 }
 
 const CardEditForm: React.FC<IEditProps> = ({
   card,
+  FileInput,
   createOrUpdateCard,
   deleteCard,
 }) => {
@@ -25,6 +26,15 @@ const CardEditForm: React.FC<IEditProps> = ({
     fileName,
     fileURL,
   } = card;
+
+  const onFileChange = (file: any) => {
+    createOrUpdateCard({
+      ...card,
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget == null) return;
     e.preventDefault();
@@ -64,7 +74,9 @@ const CardEditForm: React.FC<IEditProps> = ({
         onChange={onChange}
       />
       <MemoInput name="message" defaultValue={message} onChange={onChange} />
-      <ImageInput>Image</ImageInput>
+      <FileInputBox>
+        <FileInput name={name} onFileChange={onFileChange} />
+      </FileInputBox>
       <ButtonElement onSubmit={onSubmit}>Delete</ButtonElement>
     </CardForm>
   );
@@ -131,6 +143,11 @@ const MemoInput = styled.input`
   &:focus {
     outline: 0;
   }
+`;
+
+const FileInputBox = styled.div`
+  padding: 0;
+  flex: 1 1 50%;
 `;
 
 export default CardEditForm;

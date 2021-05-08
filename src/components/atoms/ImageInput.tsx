@@ -5,9 +5,6 @@ const ImageInput: React.FC = ({ children }) => {
   return <ImageButton>{children}</ImageButton>;
 };
 
-const ImageButton = styled.button`
-  padding: 0;
-  flex: 1 1 50%;
-`;
+const ImageButton = styled.button``;
 
 export default ImageInput;

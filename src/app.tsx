@@ -7,7 +7,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Maker from "./components/pages/maker/maker";
 import Main from "./components/pages/main/main";
 import AuthService from "./service/auth_service";
+import InputImage from "./components/modules/imageInput";
+import ImageUploader from "./service/imageUploader";
+
+const imageUploader = new ImageUploader();
 function App() {
+  const FileInput = (props: any) => (
+    <InputImage {...props} imageUploader={imageUploader} />
+  );
   const authService = new AuthService();
   const [user, setUser] = useState(null);
   authService.checkLogin((user: any) => {
@@ -28,7 +35,11 @@ function App() {
             <Login authService={authService} user={user} />
           </Route>
           <Route path="/maker">
-            <Maker authService={authService} user={user} />
+            <Maker
+              authService={authService}
+              FileInput={FileInput}
+              user={user}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

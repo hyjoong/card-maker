@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ListButton from "../atoms/listButton";
 
 interface IMain {
-  user: any;
+  user: object;
 }
 
 const MainScreen: React.FC<IMain> = ({ user }) => {

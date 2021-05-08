@@ -1,20 +1,29 @@
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import styled from "styled-components";
 import ButtonElement from "../atoms/buttonElement";
-import ImageInput from "../atoms/ImageInput";
 
 interface IAddForm {
+  FileInput: (props: any) => any;
   createOrUpdateCard: (card: any) => void;
 }
 
-const CardAddForm: React.FC<IAddForm> = ({ createOrUpdateCard }) => {
+const CardAddForm: React.FC<IAddForm> = ({ createOrUpdateCard, FileInput }) => {
   const formRef: any = useRef("");
   const nameRef: any = useRef("");
   const companyRef: any = useRef("");
   const titleRef: any = useRef("");
   const emailRef: any = useRef("");
   const messageRef: any = useRef("");
-  let value: any;
+  const [file, setFile] = useState({
+    fileName: null,
+    fileURL: null,
+  });
+  const onFileChange = (file: any) => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const card = {
@@ -24,8 +33,11 @@ const CardAddForm: React.FC<IAddForm> = ({ createOrUpdateCard }) => {
       title: titleRef.current.value || "",
       email: emailRef.current.value || "",
       message: messageRef.current.value || "",
+      fileName: file.fileName || "",
+      fileURL: file.fileURL || "",
     };
     formRef.current.reset();
+    setFile({ fileName: null, fileURL: null });
     createOrUpdateCard(card);
   };
   return (
@@ -53,7 +65,7 @@ const CardAddForm: React.FC<IAddForm> = ({ createOrUpdateCard }) => {
         placeholder="email"
       />
       <MemoInput defaultValue="" ref={messageRef} placeholder="message" />
-      <ImageInput>Image</ImageInput>
+      <FileInput onFileChange={onFileChange} name={file.fileName} />
       <ButtonElement>Add</ButtonElement>
     </CardForm>
   );

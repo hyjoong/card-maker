@@ -7,7 +7,7 @@ import Footer from "./footer";
 const Login: React.FC<AuthProps> = ({ authService }) => {
   const history = useHistory();
 
-  const goToMaker = (userId: any) => {
+  const goToMaker = (userId: number) => {
     history.push({
       pathname: "/",
       state: { id: userId },

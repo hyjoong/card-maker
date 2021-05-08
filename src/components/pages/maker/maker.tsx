@@ -7,7 +7,7 @@ import Header from "../../modules/header";
 import Editor from "../../modules/editor";
 import Preview from "../../modules/preview";
 
-function Maker({ authService, user }: AuthProps) {
+function Maker({ authService, FileInput, user }: AuthProps) {
   const [cards, setCards] = useState({
     1: {
       id: "1",
@@ -57,14 +57,14 @@ function Maker({ authService, user }: AuthProps) {
   // }, []);
 
   useEffect(() => {
-    authService.onAuthChange((user: any) => {
+    authService.onAuthChange((user: object) => {
       if (!user) {
         history.push("/");
       }
     });
   });
 
-  const createOrUpdateCard = (card: any) => {
+  const createOrUpdateCard = (card: any) => { 
     setCards((cards) => {
       const updated: any = { ...cards };
       updated[card.id] = card;
@@ -84,6 +84,7 @@ function Maker({ authService, user }: AuthProps) {
       <Header user={user} />
       <Container>
         <Editor
+          FileInput={FileInput}
           cards={cards}
           createOrUpdateCard={createOrUpdateCard}
           deleteCard={deleteCard}

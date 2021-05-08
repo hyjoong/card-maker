@@ -8,7 +8,7 @@ const Preview: React.FC<{ cards: any }> = ({ cards, children }) => {
     <PreviewContainer>
       <PreviewTitle>{children}</PreviewTitle>
       <PreviewCards>
-        {Object.keys(cards)?.map((key: string) => (
+        {Object.keys(cards)?.map((key) => (
           <Card card={cards[key]} key={key} />
         ))}
       </PreviewCards>
