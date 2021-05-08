@@ -15,17 +15,7 @@ const CardEditForm: React.FC<IEditProps> = ({
   createOrUpdateCard,
   deleteCard,
 }) => {
-  const {
-    name,
-    id,
-    company,
-    title,
-    email,
-    message,
-    theme,
-    fileName,
-    fileURL,
-  } = card;
+  const { name, company, title, email, message, fileName } = card;
 
   const onFileChange = (file: any) => {
     createOrUpdateCard({
@@ -75,7 +65,7 @@ const CardEditForm: React.FC<IEditProps> = ({
       />
       <MemoInput name="message" defaultValue={message} onChange={onChange} />
       <FileInputBox>
-        <FileInput name={name} onFileChange={onFileChange} />
+        <FileInput name={fileName} onFileChange={onFileChange} />
       </FileInputBox>
       <ButtonElement onSubmit={onSubmit}>Delete</ButtonElement>
     </CardForm>

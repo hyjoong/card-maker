@@ -34,7 +34,7 @@ const CardWrapper = styled.li`
   list-style: none;
   display: flex;
   align-items: center;
-  background-color: yellow;
+  background-color: wheat;
   border-radius: 1em;
   margin-bottom: 0.5em;
   padding: 0.2em 0;

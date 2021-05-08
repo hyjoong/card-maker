@@ -65,7 +65,9 @@ const CardAddForm: React.FC<IAddForm> = ({ createOrUpdateCard, FileInput }) => {
         placeholder="email"
       />
       <MemoInput defaultValue="" ref={messageRef} placeholder="message" />
-      <FileInput onFileChange={onFileChange} name={file.fileName} />
+      <FileInputBox>
+        <FileInput onFileChange={onFileChange} name={file.fileName} />
+      </FileInputBox>
       <ButtonElement>Add</ButtonElement>
     </CardForm>
   );
@@ -132,6 +134,11 @@ const MemoInput = styled.input`
   &:focus {
     outline: 0;
   }
+`;
+
+const FileInputBox = styled.div`
+  padding: 0;
+  flex: 1 1 50%;
 `;
 
 export default CardAddForm;

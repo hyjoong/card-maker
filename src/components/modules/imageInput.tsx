@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 interface IImage {
   imageUploader: any;
-  onFileChange: (file: object) => void;
   name: string;
+  onFileChange: (file: object) => void;
 }
 
 const InputImage: React.FC<IImage> = ({
@@ -12,11 +13,13 @@ const InputImage: React.FC<IImage> = ({
   name,
   onFileChange,
 }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const inputRef: any = useRef();
 
   const onChange = async (e: any) => {
+    setLoading(true);
     const uploaded = await imageUploader.upload(e.target.files[0]);
-    console.log(uploaded);
+    setLoading(false);
     onFileChange({
       name: uploaded.original_filename,
       url: uploaded.url,
@@ -36,7 +39,12 @@ const InputImage: React.FC<IImage> = ({
         name="file"
         onChange={onChange}
       />
-      <UploadButton onClick={onButtonClick}>{name || "No file"}</UploadButton>
+      {!loading && (
+        <UploadButton onClick={onButtonClick} name={name}>
+          {name || "No file"}
+        </UploadButton>
+      )}
+      {loading && <LoadingBox></LoadingBox>}
     </ImageBox>
   );
 };
@@ -45,15 +53,19 @@ const ImageBox = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const InputFile = styled.input`
   display: none;
 `;
 
-const UploadButton = styled.button`
+const UploadButton = styled.button<{ name: String }>`
   width: 100%;
-  background-color: ${({ theme }) => theme.makerGrey};
+  height: 100%;
+  background-color: ${(props) =>
+    props.name ? theme.makerWheat : theme.makerGrey};
   font-weight: bold;
   border: 0;
   outline: 0;
@@ -63,4 +75,24 @@ const UploadButton = styled.button`
     opacity: 0.8;
   }
 `;
+
+const LoadingBox = styled.div`
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 3px solid ${({ theme }) => theme.makerLightGrey};
+  border-top: 3px solid ${({ theme }) => theme.makerPink};
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 export default InputImage;
