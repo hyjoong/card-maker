@@ -21,6 +21,15 @@ function Maker({ authService, FileInput, user, cardRepository }: AuthProps) {
   // }, []);
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    const stopSync = cardRepository.syncCards(userId, (cards: object) => {
+      setCards(cards);
+    });
+    return () => stopSync();
+  }, [userId]); // [] = 마운트가 되었을 때 && [userId] = 사용자의 id가 변경이 될 떄마다
+  useEffect(() => {
     authService.onAuthChange((user: any) => {
       if (user) {
         setUserId(user.uid);
