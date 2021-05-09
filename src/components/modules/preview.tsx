@@ -18,6 +18,8 @@ const Preview: React.FC<{ cards: any }> = ({ cards, children }) => {
 
 const PreviewContainer = styled.section`
   flex-basis: 50%;
+  padding: 0.5em 2em;
+  overflow-y: auto;
 `;
 
 const PreviewTitle = styled.h1`

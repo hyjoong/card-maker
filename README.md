@@ -8,13 +8,13 @@ React + TypeScript + Redux + FireBase 기술을 공부하기 위해 시작한 �
 
 # 🛠 기술 스택 
 
-- FE : TypeScript, Redux, Styled-Components	
+- FE : TypeScript , Styled-Components	
 
 - DataBase :  FireBase
 
 - Image Storage: Cloudinary
 
-# 🌈 구현 기능 (예정)
+# 🌈 구현 기능
 
 -  카테고리별 친구 관리
 
@@ -23,3 +23,5 @@ React + TypeScript + Redux + FireBase 기술을 공부하기 위해 시작한 �
 - 친구 이미지 업로드
 
 - 친구 검색 기능
+
+- Redux  (예정)

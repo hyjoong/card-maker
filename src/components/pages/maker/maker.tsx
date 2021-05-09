@@ -7,47 +7,11 @@ import Header from "../../modules/header";
 import Editor from "../../modules/editor";
 import Preview from "../../modules/preview";
 
-function Maker({ authService, FileInput, user }: AuthProps) {
-  const [cards, setCards] = useState({
-    1: {
-      id: "1",
-      name: "Hyeonjoong",
-      company: "디뉴로",
-      theme: "light",
-      title: "FE",
-      email: "shape12@gmail.com",
-      message: "oh my god",
-      fileName: "hj1",
-      fileURL: null,
-    },
-    2: {
-      id: "2",
-      name: "Hyeonjoong2",
-      company: "위티",
-      theme: "light",
-      title: "FE",
-      email: "shape12@gmail.com",
-      message: "Hi ~~~",
-      fileName: "hj2",
-      fileURL: null,
-    },
-    3: {
-      id: "3",
-      name: "Hyeonjoong3",
-      company: "인썸니아",
-      theme: "light",
-      title: "FE",
-      email: "shape12@gmail.com",
-      message: "Good",
-      fileName: "hj3",
-      fileURL: null,
-    },
-  });
+function Maker({ authService, FileInput, user, cardRepository }: AuthProps) {
   const history = useHistory();
-
-  const onLogout = () => {
-    authService.logout();
-  };
+  const historyState: any = history?.location?.state;
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(historyState && historyState.id);
 
   // useEffect(() => {
   //   fetch("data/data.json")
@@ -57,19 +21,23 @@ function Maker({ authService, FileInput, user }: AuthProps) {
   // }, []);
 
   useEffect(() => {
-    authService.onAuthChange((user: object) => {
-      if (!user) {
+    authService.onAuthChange((user: any) => {
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        // 사용자가 없으면 로그인 화면으로
         history.push("/");
       }
     });
   });
 
-  const createOrUpdateCard = (card: any) => { 
+  const createOrUpdateCard = (card: any) => {
     setCards((cards) => {
       const updated: any = { ...cards };
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
 
   const deleteCard = (card: any) => {
@@ -78,6 +46,8 @@ function Maker({ authService, FileInput, user }: AuthProps) {
       delete updated[card.id];
       return updated;
     });
+
+    cardRepository.removeCard(userId, card);
   };
   return (
     <MakerContainer>
@@ -100,7 +70,8 @@ function Maker({ authService, FileInput, user }: AuthProps) {
 
 const MakerContainer = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  max-width: 80rem;
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.makerWhite};
@@ -109,6 +80,7 @@ const MakerContainer = styled.section`
 const Container = styled.div`
   display: flex;
   flex: 1;
+  min-height: 0;
   @media ${(props) => props.theme.maker} {
     flex-direction: column;
   }

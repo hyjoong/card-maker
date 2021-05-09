@@ -9,6 +9,7 @@ import Main from "./components/pages/main/main";
 import AuthService from "./service/auth_service";
 import InputImage from "./components/modules/imageInput";
 import ImageUploader from "./service/imageUploader";
+import CardRepository from "./service/cardRepository";
 
 const imageUploader = new ImageUploader();
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <InputImage {...props} imageUploader={imageUploader} />
   );
   const authService = new AuthService();
+  const cardRepository = new CardRepository();
   const [user, setUser] = useState(null);
   authService.checkLogin((user: any) => {
     if (user) {
@@ -39,6 +41,7 @@ function App() {
               authService={authService}
               FileInput={FileInput}
               user={user}
+              cardRepository={cardRepository}
             />
           </Route>
         </Switch>

@@ -34,6 +34,7 @@ const Editor: React.FC<CardProps> = ({
 const EditorContainer = styled.section`
   flex-basis: 50%;
   padding: 0.5em 2em;
+  overflow-y: auto;
   border-right: ${({ theme }) => theme.makerLightGrey};
 `;
 

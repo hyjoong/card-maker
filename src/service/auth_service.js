@@ -11,7 +11,6 @@ class AuthService {
   }
 
   onAuthChange(onUserChanged) {
-    //사용자가 바뀔 때 마다 함수로 받은 사
     firebase.auth().onAuthStateChanged((user) => {
       onUserChanged(user);
     });
