@@ -2,23 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { AuthProps } from "../../../MainInterface";
-import Footer from "../../modules/footer";
 import Header from "../../modules/header";
 import Editor from "../../modules/editor";
 import Preview from "../../modules/preview";
+import Footer from "../../modules/footer";
 
 function Maker({ authService, FileInput, user, cardRepository }: AuthProps) {
   const history = useHistory();
   const historyState: any = history?.location?.state;
   const [cards, setCards] = useState({});
   const [userId, setUserId] = useState(historyState && historyState.id);
-
-  // useEffect(() => {
-  //   fetch("data/data.json")
-  //     .then((res) => res.json())
-  //     .then((res) => setCards(res))
-  //     .then((res) => console.log("z", cards));
-  // }, []);
 
   useEffect(() => {
     if (!userId) {
@@ -28,17 +21,17 @@ function Maker({ authService, FileInput, user, cardRepository }: AuthProps) {
       setCards(cards);
     });
     return () => stopSync();
-  }, [userId]); // [] = 마운트가 되었을 때 && [userId] = 사용자의 id가 변경이 될 떄마다
+  }, [userId, cardRepository]); // [] = 마운트가 되었을 때 && [userId,cardRepository] = 사용자의 id가 변경이 되거나 cardRepository가 다른 걸로 변경되면
+
   useEffect(() => {
     authService.onAuthChange((user: any) => {
       if (user) {
         setUserId(user.uid);
       } else {
-        // 사용자가 없으면 로그인 화면으로
         history.push("/");
       }
     });
-  });
+  }, [authService, userId, history]);
 
   const createOrUpdateCard = (card: any) => {
     setCards((cards) => {
@@ -59,28 +52,35 @@ function Maker({ authService, FileInput, user, cardRepository }: AuthProps) {
     cardRepository.removeCard(userId, card);
   };
   return (
-    <MakerContainer>
-      <Header user={user} />
-      <Container>
-        <Editor
-          FileInput={FileInput}
-          cards={cards}
-          createOrUpdateCard={createOrUpdateCard}
-          deleteCard={deleteCard}
-        >
-          Friend Maker
-        </Editor>
-        <Preview cards={cards}>Friends List</Preview>
-      </Container>
-      <Footer />
-    </MakerContainer>
+    <MakerWrapper>
+      <MakerContainer>
+        <Header user={user} />
+        <Container>
+          <Editor
+            FileInput={FileInput}
+            cards={cards}
+            createOrUpdateCard={createOrUpdateCard}
+            deleteCard={deleteCard}
+          >
+            Friend Maker
+          </Editor>
+          <Preview cards={cards}>Friends List</Preview>
+        </Container>
+        <Footer />
+      </MakerContainer>
+    </MakerWrapper>
   );
 }
 
+const MakerWrapper = styled.main`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const MakerContainer = styled.section`
   width: 100%;
-  height: 100%;
-  max-width: 80rem;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.makerWhite};

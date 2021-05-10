@@ -1,8 +1,8 @@
-import firebaseApp from "./firebase";
+import { firebaseDatabase } from "./firebase";
 
 export default class CardRepository {
   syncCards(userId: string, onUpdate: any) {
-    const ref = firebaseApp.database().ref(`${userId}/cards`);
+    const ref = firebaseDatabase.ref(`${userId}/cards`);
     ref.on("value", (snapshot) => {
       // 업데이트 된다면 snapshot의 value가 설정이 되 있다면
       const value = snapshot.val();
@@ -11,9 +11,9 @@ export default class CardRepository {
     return () => ref.off();
   }
   saveCard(userId: string, card: any) {
-    firebaseApp.database().ref(`${userId}/cards/${card.id}`).set(card);
+    firebaseDatabase.ref(`${userId}/cards/${card.id}`).set(card);
   }
   removeCard(userId: string, card: any) {
-    firebaseApp.database().ref(`${userId}/cards/${card.id}`).remove();
+    firebaseDatabase.ref(`${userId}/cards/${card.id}`).remove();
   }
 }

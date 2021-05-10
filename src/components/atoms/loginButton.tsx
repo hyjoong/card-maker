@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import IHeader from "../modules/header";
 import AuthService from "../../service/auth_service";
 
 interface IButton {
@@ -33,7 +32,5 @@ const BtnLog = styled.button`
   border: 0;
   cursor: pointer;
 `;
-
-const BtnLogin = styled.button``;
 
 export default LoginButton;

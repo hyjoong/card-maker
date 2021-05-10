@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./card";
-import { CardProps } from "../../MainInterface";
 
 const Preview: React.FC<{ cards: any }> = ({ cards, children }) => {
   return (

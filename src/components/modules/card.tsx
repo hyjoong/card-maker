@@ -4,16 +4,7 @@ import styled from "styled-components";
 const DEFAULT_IMAGE = "/images/ham-sleep.jpg";
 
 const Card: React.FC<{ card: any }> = ({ card }) => {
-  const {
-    name,
-    company,
-    title,
-    email,
-    message,
-    theme,
-    fileName,
-    fileURL,
-  } = card;
+  const { name, company, title, email, message, fileURL } = card;
 
   const url = fileURL || DEFAULT_IMAGE;
   return (
@@ -34,12 +25,11 @@ const CardWrapper = styled.li`
   list-style: none;
   display: flex;
   align-items: center;
-  background-color: wheat;
-  border-radius: 1em;
-  margin-bottom: 0.5em;
+  background-color: #fff;
+  margin-bottom: 0.8em;
   padding: 0.2em 0;
   width: 100%;
-  box-shadow: 6px 6px 8px 0px ${({ theme }) => theme.makerShadow};
+  box-shadow: 10px 10px 12px 0px ${({ theme }) => theme.makerShadow};
 `;
 
 const CardImg = styled.img`

@@ -10,7 +10,7 @@ interface IMain {
 const MainScreen: React.FC<IMain> = ({ user }) => {
   return (
     <MainContainer>
-      <Link to="/">
+      <Link to="/maker">
         <ListButton>친구 등록</ListButton>
       </Link>
       <Link to="/maker">{user && <ListButton>친구 리스트</ListButton>}</Link>
@@ -20,8 +20,8 @@ const MainScreen: React.FC<IMain> = ({ user }) => {
 
 const MainContainer = styled.section`
   border: 1px solid black;
-  height: 50vh;
   width: 100%;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;

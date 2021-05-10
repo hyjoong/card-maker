@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import Footer from "./components/modules/footer";
+import { useState } from "react";
 import Login from "./components/modules/login";
-import { AuthProps } from "./MainInterface";
-import styled from "styled-components";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Maker from "./components/pages/maker/maker";
 import Main from "./components/pages/main/main";
@@ -27,38 +24,25 @@ function App() {
     }
   });
   return (
-    <LoginWrapper>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <Main authService={authService} user={user} />
-          </Route>
-          <Route path="/login">
-            <Login authService={authService} user={user} />
-          </Route>
-          <Route path="/maker">
-            <Maker
-              authService={authService}
-              FileInput={FileInput}
-              user={user}
-              cardRepository={cardRepository}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </LoginWrapper>
+    <BrowserRouter basename="/friends-store">
+      <Switch>
+        <Route exact path="/">
+          <Main authService={authService} user={user} />
+        </Route>
+        <Route path="/login">
+          <Login authService={authService} user={user} />
+        </Route>
+        <Route path="/maker">
+          <Maker
+            authService={authService}
+            FileInput={FileInput}
+            user={user}
+            cardRepository={cardRepository}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
-
-const LoginWrapper = styled.div`
-  * {
-    box-sizing: border-box;
-  }
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
-`;
 
 export default App;
