@@ -1,6 +1,8 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8580a0bc-5d42-4574-b54d-9c8b3735af00/deploy-status)](https://app.netlify.com/sites/friendstore/deploys)
+
 # 🎇 Motivation
 
-React + TypeScript + Redux + FireBase 기술을 공부하기 위해 시작한 프로젝트 입니다.
+React + TypeScript + FireBase 기술을 공부하기 위해 시작한 프로젝트 입니다.
 
 # ✨Friends-Store
 
@@ -16,8 +18,6 @@ React + TypeScript + Redux + FireBase 기술을 공부하기 위해 시작한 �
 
 - Image Storage: Cloudinary
 
-- Redux (예정)
-
 # 🌈 구현 기능
 
 - Firebase Authentication을 이용한 소셜 로그인(Google, gitHub) 인증 구현
@@ -25,7 +25,6 @@ React + TypeScript + Redux + FireBase 기술을 공부하기 위해 시작한 �
 - Firebase realtime database를 사용한 친구 데이터 저장 관리
 
 - Cloudinary 를 이용한 이미지 업로더 기능 구현
- 
 
 # 🙄 구현 예정
 
@@ -35,8 +34,8 @@ React + TypeScript + Redux + FireBase 기술을 공부하기 위해 시작한 �
 
 - 친구 검색 기능
 
-- 친구 추천 기능 
+- 친구 추천 기능
 
 - 메인 화면에서 친구 리스트 미리보기
 
-- 회원가입 기능
+- 회원가입 기능  

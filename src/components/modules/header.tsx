@@ -30,7 +30,7 @@ const HeaderContainer = styled.header`
   text-align: center;
   height: 4em;
   padding: 0 100px;
-  background-color: purple;
+  background-color: khaki;
   align-items: center;
   top: 0;
   display: flex;
